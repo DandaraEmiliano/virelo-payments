@@ -2,6 +2,8 @@
 
 Uma demo de link de pagamento feita com Java e Spring Boot. O lojista cria a cobrança, compartilha o link e acompanha as tentativas. Quem abre o checkout pode simular pagamentos com Pix, crédito ou débito.
 
+[**Testar a demo online**](https://virelo-payments.onrender.com/)
+
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/DandaraEmiliano/virelo-payments)
 
 ![Painel do Virelo com totais e lista de cobranças](docs/painel.png)
