@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Checkout de demonstração Virelo Pagamentos.">
+  <title>Virelo · Checkout</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/checkout.js"></script>
+</head>
+<body class="checkout">
+  <header class="checkout-top">
+    <a class="brand" href="/" aria-label="Virelo Pagamentos, início">
+      <span class="brand-mark" aria-hidden="true"></span><span>virelo<small>pagamentos</small></span>
+    </a>
+    <span class="mode"><span class="demo-dot"></span> Ambiente de teste</span>
+  </header>
+  <main class="checkout-main">
+    <div class="checkout-card">
+      <div class="checkout-heading">
+        <p id="checkout-description">Carregando cobrança…</p>
+        <h1 id="checkout-amount" hidden></h1>
+        <span id="checkout-status" class="status" hidden></span>
+      </div>
+      <p class="message" id="checkout-message" role="status" hidden></p>
+      <form id="payment-form" hidden>
+        <fieldset id="payment-options">
+          <legend>Forma de pagamento</legend>
+          <label class="pay-option"><input type="radio" name="method" value="PIX" checked><span>Pix</span><small>Confirmação em uma etapa separada</small></label>
+          <label class="pay-option"><input type="radio" name="method" value="CREDIT"><span>Cartão de crédito</span><small>À vista</small></label>
+          <label class="pay-option"><input type="radio" name="method" value="DEBIT"><span>Cartão de débito</span><small>À vista</small></label>
+        </fieldset>
+        <div id="card-options" hidden>
+          <label for="scenario">Cartão de teste</label>
+          <select id="scenario" name="scenario">
+            <option value="APPROVE">Simular aprovação</option>
+            <option value="DECLINE">Simular recusa</option>
+          </select>
+        </div>
+        <button class="button button-dark full" id="pay-button" type="submit">Gerar Pix de teste</button>
+      </form>
+      <section id="pix-panel" class="pix-panel" aria-labelledby="pix-title" hidden>
+        <h2 id="pix-title">Aguardando Pix</h2>
+        <p>Confirme para simular o recebimento do pagamento.</p>
+        <button class="button button-dark full" id="confirm-pix" type="button">Simular confirmação Pix</button>
+      </section>
+      <section id="closed-panel" class="closed-panel" aria-live="polite" hidden>
+        <h2 id="closed-title"></h2><p id="closed-description"></p>
+      </section>
+    </div>
+    <p class="checkout-note">Demonstração sem movimentação de dinheiro.</p>
+  </main>
+</body>
+</html>

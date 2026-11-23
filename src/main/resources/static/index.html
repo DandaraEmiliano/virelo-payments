@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Virelo Pagamentos. Crie links de cobrança e experimente Pix, crédito e débito em uma demonstração.">
+  <title>Virelo · Painel de cobranças</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/dashboard.js"></script>
+</head>
+<body class="dashboard">
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="Virelo Pagamentos, início">
+      <span class="brand-mark" aria-hidden="true"></span><span>virelo<small>pagamentos</small></span>
+    </a>
+    <nav aria-label="Painel">
+      <a class="nav-item" href="#visao-geral" aria-current="page"><span aria-hidden="true">▦</span> Visão geral</a>
+      <a class="nav-item" href="#cobrancas"><span aria-hidden="true">≡</span> Cobranças</a>
+    </nav>
+    <div class="sidebar-footer"><span class="demo-dot"></span> Modo demonstração</div>
+  </aside>
+  <main class="workspace" id="visao-geral">
+    <header class="topbar">
+      <p>Visão geral</p>
+      <span class="mode"><span class="demo-dot"></span> Ambiente de teste</span>
+    </header>
+    <section class="hero" aria-labelledby="headline">
+      <div class="hero-body">
+        <h1 id="headline">Cobranças por link</h1>
+        <p>Crie e compartilhe cobranças que podem ser pagas por Pix, crédito ou débito.</p>
+        <button class="button button-mint" id="new-charge" type="button"><span aria-hidden="true">+</span> Nova cobrança</button>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="decor-card back-card"></div>
+        <div class="decor-card front-card"><i></i><b></b></div>
+      </div>
+    </section>
+    <section class="stats" aria-label="Totais das cobranças">
+      <article class="stat"><span class="stat-icon mint" aria-hidden="true">✓</span><div><h2>Recebido</h2><strong id="paid-total">—</strong></div></article>
+      <article class="stat"><span class="stat-icon blue" aria-hidden="true">◷</span><div><h2>Pendente</h2><strong id="open-total">—</strong></div></article>
+      <article class="stat"><span class="stat-icon violet" aria-hidden="true">⊘</span><div><h2>Expirado</h2><strong id="expired-total">—</strong></div></article>
+    </section>
+    <section class="charges" id="cobrancas" aria-labelledby="charges-title">
+      <header class="section-header">
+        <div><h2 id="charges-title">Suas cobranças</h2><p id="charge-count">Carregando cobranças…</p></div>
+        <button class="button button-outline" id="refresh" type="button">Atualizar</button>
+      </header>
+      <p class="message" id="dashboard-message" role="status" hidden></p>
+      <div class="table-scroll">
+        <table aria-label="Lista de cobranças">
+          <thead><tr><th scope="col">Descrição</th><th scope="col">Valor</th><th scope="col">Status</th><th scope="col">Criada em</th><th scope="col"><span class="sr-only">Ações</span></th></tr></thead>
+          <tbody id="charge-rows"></tbody>
+        </table>
+      </div>
+      <p class="empty" id="empty-list" hidden>Nenhuma cobrança criada. Comece com uma nova cobrança.</p>
+    </section>
+  </main>
+  <dialog id="charge-dialog" aria-labelledby="new-title">
+    <form id="new-form">
+      <div class="dialog-heading"><h2 id="new-title">Nova cobrança</h2><button class="icon-button" data-close type="button" aria-label="Fechar">×</button></div>
+      <p class="muted">O link fica disponível por 24 horas.</p>
+      <label for="description">Descrição</label>
+      <input id="description" name="description" maxlength="100" placeholder="Ex. Oficina de cerâmica" required autofocus>
+      <label for="amount">Valor em reais</label>
+      <input id="amount" name="amount" inputmode="decimal" placeholder="89,90" maxlength="9" required>
+      <p class="message" id="create-error" role="alert" hidden></p>
+      <button class="button button-dark full" id="create-button" type="submit">Criar link de pagamento</button>
+    </form>
+  </dialog>
+  <dialog id="detail-dialog" aria-labelledby="detail-title">
+    <div class="dialog-heading"><h2 id="detail-title">Detalhes da cobrança</h2><button class="icon-button" data-close type="button" aria-label="Fechar">×</button></div>
+    <p class="message" id="details-error" role="alert" hidden></p>
+    <div id="detail-content" hidden>
+      <p class="muted" id="detail-description"></p>
+      <div class="detail-summary"><strong id="detail-amount"></strong><span id="detail-status" class="status"></span></div>
+      <p class="muted" id="detail-expiration" hidden></p>
+      <label for="share-url">Link do checkout</label>
+      <div class="share"><input id="share-url" readonly><button id="copy-link" class="button button-outline" type="button">Copiar</button></div>
+      <div class="detail-actions"><a id="open-checkout" class="button button-dark" target="_blank" rel="noopener">Abrir checkout</a></div>
+      <h3>Tentativas de pagamento</h3>
+      <p id="empty-attempts" class="muted">Ainda não há tentativas.</p>
+      <ul id="attempts" class="timeline"></ul>
+    </div>
+  </dialog>
+  <template id="charge-row">
+    <tr><th scope="row"><button class="charge-name" type="button"></button></th><td class="row-amount"></td>
+      <td><span class="status"></span></td><td class="row-date"></td>
+      <td><button class="button button-quiet" type="button">Ver detalhes</button></td></tr>
+  </template>
+</body>
+</html>
