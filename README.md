@@ -2,6 +2,8 @@
 
 Uma demo de link de pagamento feita com Java e Spring Boot. O lojista cria a cobrança, compartilha o link e acompanha as tentativas. Quem abre o checkout pode simular pagamentos com Pix, crédito ou débito.
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/DandaraEmiliano/virelo-payments)
+
 ![Painel do Virelo com totais e lista de cobranças](docs/painel.png)
 
 ## Experimente
@@ -22,6 +24,10 @@ Para gerar o JAR, use `mvn package` e rode `java -jar target/virelo-payments-0.1
 4. Volte ao painel e abra os detalhes. O total recebido inclui o Pix e o histórico mostra a tentativa de débito recusada.
 
 O crédito e o débito têm cenários de aprovação e recusa selecionáveis. O Pix tem duas etapas, geração e confirmação. Todos usam dados de demonstração e dispensam dados de cartão ou credenciais de um provedor.
+
+## Demo no Render
+
+O Blueprint cria um serviço web gratuito com Docker. A demo pública usa um painel compartilhado e inicia com cobranças de exemplo a cada reinício. Use descrições fictícias, visíveis aos visitantes.
 
 ## Como funciona
 
